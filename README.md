@@ -1,2 +1,2 @@
 # doccords
-Pest program project
+Pesto Ninja program project

@@ -49,6 +49,11 @@ orbs:
   aws-s3: circleci/aws-s3@1.0.11
 jobs:
   build:
+    filters:
+      branches:
+        only: 'develop'
+
+
     docker:
       - image: circleci/node:12.9.1-browsers
 

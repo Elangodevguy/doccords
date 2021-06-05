@@ -1,11 +1,11 @@
-# Doccords
+### Doccords
 
 Users can maintain, analyze and share medical documents.
 
-# Getting Started
+## Getting Started
 These instructions will give you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on deploying the project on a live system.
 
-# Prerequisites
+## Prerequisites
 Requirements for the software and other tools to build, test and push
 
 we need node version 10.0.0 and above or you can download from [here](https://nodejs.org/en/download/)
@@ -68,73 +68,15 @@ Most of our obovious ESLint errors will be fix by running the below command
 To make our coding practices standard with all our team members, we are using Prettier
 ### `npm run format`
 
-## Workflow 
+# Pre-commit hook
+In this project we used `huskey` and `lint-staged` to hook particular function before commiting any
+whenever we do `git commit -m 'message'` huskey and lint-staged will call the `pre-commit` hook, from the hook we will call our scripts in this order 
+`npm run lint`, `npm run lint-fix`, `npm run format` if anyone of this script got failed our commit will not happen, so this will give standard structure to our code base
 
+## Deployment
+We have integrated `Circle CI\CD` tool to keep our deployment seamless
+Whenever we `push` something in any of our branch `Circle CI\CD` will get called and there also it will run the `ESLint` and `Prettier` scripts if any of the script got failed it will notify all the users in the repo
 
-<!-- ## Available Scripts
+but when we `push` something to develop branch it will go one step further and `Circle CI\CD` will proceed with build and will sync our local `build/` folder to AWS S3 static bucket. Once the deployment is done `Circle CI\CD` will notify us in slack with the corresponding status
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
- -->
+[website link](https://d35a2073q06o61.cloudfront.net/)

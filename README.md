@@ -2,10 +2,10 @@
 
 Users can maintain, analyze and share medical documents.
 
-#Getting Started
+# Getting Started
 These instructions will give you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on deploying the project on a live system.
 
-#Prerequisites
+# Prerequisites
 Requirements for the software and other tools to build, test and push
 
 we need node version 10.0.0 and above or you can download from [here](https://nodejs.org/en/download/)
@@ -16,9 +16,9 @@ you can use `npm -v` to check npm version
 
 Instal VS code, We need VS code IDE to start our development process
 
-### need to install `Prettier` and `ESLint` as VS code package
+need to install `Prettier` and `ESLint` as VS code package
 
-#Installing
+# Installing
 In this section we will tell you step by step process, that will tell you how to get a development environment running
 
 Clone this project repository using
@@ -40,12 +40,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-#Testing
+# Testing
 Launches the test runner in the interactive watch mode.\
 ### `npm test`
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#Production-build
+# Production-build
 Builds the app for production to the `build` folder.\
 
 ### `npm run build`
@@ -53,9 +53,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-## Other available scripts
+# Other available scripts
 
-#Linting
+# Linting
 To lint our entire project expect build folder, we can run 
 ### `npm run lint`
 VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` will conatin all the standard rules for our project

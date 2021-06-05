@@ -1,4 +1,4 @@
-### Doccords
+# Doccords
 
 Users can maintain, analyze and share medical documents.
 
@@ -18,7 +18,7 @@ Instal VS code, We need VS code IDE to start our development process
 
 need to install `Prettier` and `ESLint` as VS code package
 
-# Installing
+## Installing
 In this section we will tell you step by step process, that will tell you how to get a development environment running
 
 Clone this project repository using
@@ -40,12 +40,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-# Testing
+## Testing
 Launches the test runner in the interactive watch mode.\
 ### `npm test`
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-# Production-build
+## Production-build
 Builds the app for production to the `build` folder.\
 
 ### `npm run build`
@@ -55,20 +55,20 @@ Your app is ready to be deployed!
 
 ## Other available scripts
 
-# Linting
+### Linting
 To lint our entire project expect build folder, we can run 
 ### `npm run lint`
 we don't need to run the above commoand for every change in our file, VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` which conatins all the standard rules for our project.
 
-# Linting --fix
+### Linting --fix
 Most of our obovious ESLint errors will be fix by running the below command
 ### `npm run lint-fix`
 
-# Pretty code
+### Pretty code
 To make our coding practices standard with all our team members, we are using Prettier
 ### `npm run format`
 
-# Pre-commit hook
+### Pre-commit hook
 In this project we used `huskey` and `lint-staged` to hook particular function before commiting any
 whenever we do `git commit -m 'message'` huskey and lint-staged will call the `pre-commit` hook, from the hook we will call our scripts in this order 
 `npm run lint`, `npm run lint-fix`, `npm run format` if anyone of this script got failed our commit will not happen, so this will give standard structure to our code base
@@ -79,4 +79,4 @@ Whenever we `push` something in any of our branch `Circle CI\CD` will get called
 
 but when we `push` something to develop branch it will go one step further and `Circle CI\CD` will proceed with build and will sync our local `build/` folder to AWS S3 static bucket. Once the deployment is done `Circle CI\CD` will notify us in slack with the corresponding status
 
-[website link](https://d35a2073q06o61.cloudfront.net/)
+# [website link](https://d35a2073q06o61.cloudfront.net/)

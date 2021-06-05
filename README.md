@@ -18,7 +18,7 @@ Instal VS code, We need VS code IDE to start our development process
 
 ### need to install `Prettier` and `ESLint` as VS code package
 
-#installing
+#Installing
 In this section we will tell you step by step process, that will tell you how to get a development environment running
 
 Clone this project repository using
@@ -40,12 +40,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-#testing
+#Testing
 Launches the test runner in the interactive watch mode.\
 ### `npm test`
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#production-build
+#Production-build
 Builds the app for production to the `build` folder.\
 
 ### `npm run build`
@@ -55,10 +55,10 @@ Your app is ready to be deployed!
 
 ## Other available scripts
 
-#linting
+#Linting
 To lint our entire project expect build folder, we can run 
 ### `npm run lint`
-### VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` will conatin all the standard rules for our project
+VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` will conatin all the standard rules for our project
 
 
 

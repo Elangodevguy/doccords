@@ -1,8 +1,32 @@
-# Getting Started with Create React App
+# Doccords
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Users can maintain, analyze and share medical documents.
 
-## Available Scripts
+##Getting Started
+These instructions will give you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on deploying the project on a live system.
+
+#Prerequisites
+
+Requirements for the software and other tools to build, test and push
+
+we need node version 10.0.0 and above or you can download from [here](https://nodejs.org/en/download/)
+you can use `node -v` to check node version
+
+We need npm version 6.0.0 and above - this will be automatcally get installed while installing Node js using installer
+you can use `npm -v` to check npm version
+
+#installing
+
+In this section we will tell you step by step process, that will tell you how to get a development environment running
+
+Clone this project repository using
+### `git clone repo_name`
+
+Install both dependency and dev-dependency using
+### `npm install` or `npm i` 
+
+
+<!-- ## Available Scripts
 
 In the project directory, you can run:
 
@@ -68,3 +92,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ -->

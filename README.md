@@ -53,14 +53,22 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-# Other available scripts
+## Other available scripts
 
 # Linting
 To lint our entire project expect build folder, we can run 
 ### `npm run lint`
-VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` will conatin all the standard rules for our project
+we don't need to run the above commoand for every change in our file, VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` which conatins all the standard rules for our project.
 
+# Linting --fix
+Most of our obovious ESLint errors will be fix by running the below command
+### `npm run lint-fix`
 
+# Pretty code
+To make our coding practices standard with all our team members, we are using Prettier
+### `npm run format`
+
+# Workflow 
 
 
 <!-- ## Available Scripts

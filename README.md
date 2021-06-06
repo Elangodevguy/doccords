@@ -14,7 +14,7 @@ you can use `node -v` to check node version
 We need npm version 6.0.0 and above - this will be automatcally get installed while installing Node js using installer
 you can use `npm -v` to check npm version
 
-Instal VS code, We need VS code IDE to start our development process
+Install VS Code editor, We need VS code IDE to start our development process
 
 need to install `Prettier` and `ESLint` as VS code package
 

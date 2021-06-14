@@ -93,5 +93,8 @@ jobs:
           overwrite: true
 
       - slack/notify:
-          event: always
+          event: pass
           template: success_tagged_deploy_1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1

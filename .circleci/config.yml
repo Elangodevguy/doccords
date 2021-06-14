@@ -99,7 +99,7 @@ jobs:
           overwrite: true
 
 workflows:
-  your-workflow:
+  version: 2.2
     jobs:
       - slack/notify:
         event: pass

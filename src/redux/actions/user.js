@@ -15,3 +15,11 @@ export const setLoading = (payload) => ({
 export const deleteUserDetail = () => ({
   type: types.DELETE_USER_DETAIL,
 });
+export const setProfilesAndDocuments = (payload) => ({
+  type: types.SET_PROFILES_AND_DOCUMENTS,
+  payload,
+});
+export const setProfiles = (payload) => ({
+  type: types.SET_PROFILES,
+  payload,
+});

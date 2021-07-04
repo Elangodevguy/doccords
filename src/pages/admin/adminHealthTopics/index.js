@@ -49,7 +49,7 @@ const AdminHealthTopics = ({
   const classes = useStyles();
   const [rows, setRows] = useState([]);
   const [columns, setColumns] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [deleteHealthTopicId, setDeleteHealthTopicId] = useState("");
   const history = useHistory();
 

@@ -4,7 +4,7 @@ import Home from "pages/home";
 import Login from "pages/login";
 import Profiles from "pages/users/profiles";
 import CreateProfiles from "pages/users/profiles/createProfile";
-import EditProfiles from "pages/Profile/editProfile";
+// import EditProfiles from "pages/Profile/editProfile";
 import Documents from "pages/users/documents";
 import UserDashboard from "pages/users/dashboard";
 import UnAuthorized from "pages/unauthorized";
@@ -69,7 +69,8 @@ export const RouterConfig = () => {
           <CreateProfiles />
         </PrivateRoute>
         <PrivateRoute exact path={EDIT_PROFILES}>
-          <EditProfiles />
+          <CreateProfiles />
+          {/* <EditProfiles /> */}
         </PrivateRoute>
         <PrivateRoute path={DASHBOARD}>
           <UserDashboard />

@@ -132,7 +132,7 @@ const AdminArticle = ({
         ).accessToken;
         const res = await axios({
           method: "post",
-          url: "http://localhost:5001/api/v1/admin/upload/image",
+          url: "https://doccords-api.herokuapp.com/api/v1/admin/upload/image",
           data: fileData,
           headers: {
             "Content-Type": "multipart/form-data",

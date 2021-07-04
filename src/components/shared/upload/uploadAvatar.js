@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Spinner from "components/shared/spinner";
-import { Button } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { setUploadedImageURL } from "redux/actions/common";
-import DescriptionIcon from "@material-ui/icons/Description";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CameraAltIcon from "@material-ui/icons/CameraAlt";
 
 const UploadAvatar = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -60,14 +59,7 @@ const UploadAvatar = () => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-
-        // Reset to default values after 3 seconds
-        setTimeout(() => {
-          setSelectedFile(null);
-          setPreview(null);
-          setIsSuccess(false);
-          setButtonText("Select your file first");
-        }, 2000);
+        console.log(res);
       }
     } catch (error) {
       setIsLoading(false);
@@ -87,15 +79,18 @@ const UploadAvatar = () => {
   if (!uploadedLink.length > 0) {
     return (
       <div className="photo_upload">
+        <Typography variant="h5" style={{ marginTop: "1rem" }}>
+          Add a profile
+        </Typography>
         <main style={{ marginTop: "1rem" }}>
           <form
             onSubmit={(e) => handleFileUpload(e)}
-            // style={{
-            //   display: "flex",
-            //   flexDirection: "column",
-            //   justifyContent: "center",
-            //   alignItems: "center",
-            // }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
             <label className="uploader" style={{ width: "15rem" }}>
               <div className="upload-space">
@@ -111,19 +106,19 @@ const UploadAvatar = () => {
                       <>
                         {preview ? (
                           <div className="preview">
-                            <DescriptionIcon
-                              color="secondary"
-                              style={{ fontSize: "3rem" }}
+                            <img
+                              src={preview}
+                              alt="Preview of the file to be uploaded"
                             />
                           </div>
                         ) : (
                           // <i className="icon-upload"></i>
-                          <CloudUploadIcon style={{ fontSize: "3rem" }} />
+                          <CameraAltIcon />
                         )}
                         <input
                           type="file"
                           onChange={onFileSelected}
-                          accept="image/*, application/pdf"
+                          accept="image/*"
                         />
                       </>
                     )}
@@ -160,9 +155,15 @@ const UploadAvatar = () => {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ width: "8rem", height: "8rem" }}>
-          <a href={uploadedLink} target="_blank" rel="noreferrer">
-            <DescriptionIcon color="secondary" style={{ fontSize: "6rem" }} />
-          </a>
+          <img
+            src={uploadedLink}
+            alt="avatar"
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "100%",
+            }}
+          />
         </div>
         <Button
           variant="contained"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Table from "components/Table/Table";
@@ -19,10 +19,10 @@ const Profiles = ({ fetchAllHealthTopics }) => {
   const classes = useStyles();
   const history = useHistory();
 
-  useEffect(() => {
-    // fetch health Topics
-    fetchAllHealthTopics();
-  }, []);
+  // useEffect(() => {
+  //   // fetch health Topics
+  //   fetchAllHealthTopics();
+  // }, []);
 
   const handleCreateProfileClick = () => {
     console.log("add clicked");

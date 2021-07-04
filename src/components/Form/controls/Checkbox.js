@@ -9,12 +9,12 @@ export default function Checkbox(props) {
   // eslint-disable-next-line react/prop-types
   const { name, label, value, onChange } = props;
 
-  const convertToDefEventPara = (name, value) => ({
-    target: {
-      name,
-      value,
-    },
-  });
+  // const convertToDefEventPara = (name, value) => ({
+  //   target: {
+  //     name,
+  //     value,
+  //   },
+  // });
 
   return (
     <FormControl>
@@ -24,9 +24,7 @@ export default function Checkbox(props) {
             name={name}
             color="primary"
             checked={value}
-            onChange={(e) =>
-              onChange(convertToDefEventPara(name, e.target.checked))
-            }
+            onChange={onChange}
           />
         }
         label={label}

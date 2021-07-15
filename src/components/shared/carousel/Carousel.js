@@ -9,7 +9,6 @@ import GridListTileBar from "@material-ui/core/GridListTileBar";
 
 // eslint-disable-next-line react/prop-types
 const MyCarousel = (props) => {
-  //   console.log(data);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -47,12 +46,6 @@ const MyCarousel = (props) => {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-100-px"
       >
-        {/* <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div> */}
-        {
-          // eslint-disable-next-line react/prop-types
-        }
         {props.data.map((item, index) => {
           return (
             // <div key={index} onClick={(e) => console.log(item.title)}>

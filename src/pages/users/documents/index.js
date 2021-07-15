@@ -13,6 +13,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MaterialTable from "material-table";
 import tableIcons from "components/shared/tableIcons";
 import Modal from "@material-ui/core/Modal";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import UploadFile from "components/shared/upload/uploadFile";
 import { setUploadedImageURL } from "redux/actions/common";
@@ -21,7 +22,11 @@ import {
   fetchAllProfiles,
   createDoc,
   fetchAllProfilesAndDocuments,
+  shareDocument,
+  updateDocAccess,
+  deleteDocuments,
 } from "apiRequests/user";
+import { validateEmail } from "Utils/validations";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -66,6 +71,9 @@ const Documents = ({
   createDoc,
   fetchAllProfilesAndDocuments,
   documents,
+  shareDocument,
+  updateDocAccess,
+  deleteDocuments,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -83,9 +91,20 @@ const Documents = ({
       text: "",
     },
   });
+  const [emailError, setEmailError] = useState({
+    status: false,
+    text: "",
+  });
   const [open, setOpen] = useState(false);
   const modalStyle = getModalStyle();
-  const [shareData, setSharedata] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
+  const [modalType, setModalType] = useState("");
+  const [email, setEmail] = useState([]);
+  const [revokeData, setRevokeData] = useState({});
+  const [sharedList, setSharedList] = useState({
+    documentId: "",
+    sharedList: [],
+  });
   useEffect(() => {
     fetchAllHealthTopics();
     fetchAllProfilesAndDocuments();
@@ -122,6 +141,7 @@ const Documents = ({
     if (e.target.name === "topic") {
       if (e.target.value === "none") {
         setShowSuggested(true);
+        setSelectedHealthTopic(e.target.value);
       } else {
         setShowSuggested(false);
         setSelectedHealthTopic(e.target.value);
@@ -145,6 +165,15 @@ const Documents = ({
     if (e.target.name === "profile") {
       setSelectedProfile(e.target.value);
     }
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+      if (e.target.value.length > 0) {
+        setEmailError({
+          status: false,
+          text: "",
+        });
+      }
+    }
   };
 
   const clickCreate = () => {
@@ -166,6 +195,7 @@ const Documents = ({
         link: uploadedLink,
         healthTopicId: selectedHealthTopic,
         profileId: selectedProfile,
+        suggestedTopic,
       };
       createDoc(documentData);
       setSelectedProfile(profiles[0].profileId);
@@ -200,7 +230,9 @@ const Documents = ({
       // eslint-disable-next-line react/display-name
       render: (rowData) => {
         if (rowData.sharedList.length > 0) {
-          return <p>{rowData.sharedList.join(",")}</p>;
+          return rowData.sharedList.map((single, index) => (
+            <p key={index}>{single}</p>
+          ));
         }
         return <p>None</p>;
       },
@@ -213,36 +245,170 @@ const Documents = ({
   const handleClose = () => {
     setOpen(false);
   };
-
+  const onRevokeShareClick = () => {
+    updateDocAccess(sharedList);
+    handleClose();
+    setRevokeData({});
+    setSharedList({
+      documentId: "",
+      sharedList: [],
+    });
+  };
+  const handleRevokeClose = () => {
+    handleClose();
+    setRevokeData({});
+    setSharedList({
+      documentId: "",
+      sharedList: [],
+    });
+  };
+  const onShareClick = () => {
+    if (email.length > 0 && validateEmail(email)) {
+      console.log(selectedData);
+      const documentIds = selectedData.map((document) => document.documentId);
+      shareDocument({ documentIds, email, type: "add" });
+      handleClose();
+      setSelectedData([]);
+    } else {
+      if (email.length > 0) {
+        if (!validateEmail(email)) {
+          setEmailError({
+            status: true,
+            text: "please enter valid email",
+          });
+        }
+      } else {
+        setEmailError({
+          status: true,
+          text: "please enter email address",
+        });
+      }
+    }
+  };
+  const onDeleteClick = () => {
+    const documentIds = selectedData.map((document) => document.documentId);
+    deleteDocuments(documentIds);
+    handleClose();
+    setSelectedData([]);
+    setModalType("");
+  };
   const body = () => {
-    if (shareData.length > 0) {
+    console.log("selecteddddddddd", selectedData);
+    if (selectedData.length > 0 && modalType === "share") {
       return (
         <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-documents">Sharing documnt</h2>
+          <h2 id="simple-modal-documents">Sharing document</h2>
           <p id="simple-modal-description-documents">
-            You are sharing {shareData.length} documents, please give the email
-            id below
+            You are sharing {selectedData.length} documents, please give the
+            email id below
           </p>
           <div>
             <TextField
+              style={{ marginTop: "1rem" }}
               id="email"
               name="email"
-              label="Outlined"
+              label="Email*"
               variant="outlined"
+              onChange={handleChange}
+              value={email}
+              error={emailError.status}
+              helperText={emailError.text}
             />
           </div>
-          <div>
+          <div style={{ marginTop: "2rem" }}>
             <Button
               variant="contained"
               className={classes.button_yes}
-              // onClick={clickedYes}
+              onClick={onShareClick}
             >
               Share
             </Button>
             <Button
               variant="contained"
               className={classes.button_no}
-              // onClick={handleClose}
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      );
+    }
+    if (selectedData.length > 0 && modalType === "delete") {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-documents">Delete document</h2>
+          <p id="simple-modal-description-documents">
+            Are you sure you want to delete {selectedData.length} documents ?
+          </p>
+
+          <div style={{ marginTop: "2rem" }}>
+            <Button
+              variant="contained"
+              className={classes.button_yes}
+              onClick={onDeleteClick}
+            >
+              Delete
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.button_no}
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      );
+    }
+    if (
+      !(
+        Object.keys(revokeData).length === 0 &&
+        revokeData.constructor === Object &&
+        modalType === "revoke"
+      )
+    ) {
+      return (
+        <div style={modalStyle} className={classes.paper}>
+          <h2 id="simple-modal-documents">Revoking the access</h2>
+
+          <div className={classes.root}>
+            <Autocomplete
+              multiple
+              limitTags={2}
+              id="multiple-revoke-tags"
+              options={revokeData.sharedList}
+              getOptionLabel={(option) => option}
+              defaultValue={revokeData.sharedList}
+              value={sharedList.sharedList}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="Shared List"
+                  placeholder="Shared List"
+                />
+              )}
+              onChange={(event, value) => {
+                setSharedList({
+                  ...sharedList,
+                  sharedList: value,
+                });
+              }}
+            />
+          </div>
+          <div style={{ marginTop: "2rem" }}>
+            <Button
+              variant="contained"
+              className={classes.button_yes}
+              onClick={onRevokeShareClick}
+            >
+              Revoke access
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.button_no}
+              onClick={handleRevokeClose}
             >
               Cancel
             </Button>
@@ -252,7 +418,10 @@ const Documents = ({
     }
     return <div>none</div>;
   };
-
+  console.log(
+    "++++",
+    !(Object.keys(revokeData).length === 0 && revokeData.constructor === Object)
+  );
   return (
     <>
       <Button
@@ -351,9 +520,6 @@ const Documents = ({
                     {topic.title}
                   </MenuItem>
                 ))}
-                <MenuItem value="none">
-                  <em>None of above</em>
-                </MenuItem>
               </Select>
             </FormControl>
             {showSuggested && (
@@ -394,6 +560,7 @@ const Documents = ({
               data={row}
               options={{
                 selection: true,
+                actionsColumnIndex: -1,
               }}
               actions={[
                 {
@@ -401,22 +568,33 @@ const Documents = ({
                   icon: tableIcons.ShareIcon,
                   onClick: (evt, data) => {
                     handleOpen();
-                    setSharedata(data);
+                    setModalType("share");
+                    setSelectedData(data);
                   },
                 },
                 {
                   tooltip: "Remove All Selected documents",
                   icon: tableIcons.Delete,
-                  onClick: (evt, data) =>
-                    alert("You want to delete " + data.length + " rows"),
+                  onClick: (evt, data) => {
+                    handleOpen();
+                    setModalType("delete");
+                    setSelectedData(data);
+                  },
                 },
-                // (rowData) => ({
-                //   icon: tableIcons.Delete,
-                //   tooltip: "Revoke permission",
-                //   onClick: (event, rowData) =>
-                //     confirm("You want to delete " + rowData.name),
-                //   disabled: 4 < 3,
-                // }),
+                {
+                  icon: tableIcons.SwapHorizIcon,
+                  position: "row",
+                  tooltip: "Revoke permission",
+                  onClick: (event, rowData) => {
+                    handleOpen();
+                    setModalType("revoke");
+                    setRevokeData(rowData);
+                    setSharedList({
+                      sharedList: rowData.sharedList,
+                      documentId: rowData.documentId,
+                    });
+                  },
+                },
               ]}
             />
             <Modal
@@ -449,6 +627,9 @@ const mapDispatchToProps = (dispatch) => ({
   fetchAllProfiles: () => dispatch(fetchAllProfiles()),
   createDoc: (doc) => dispatch(createDoc(doc)),
   fetchAllProfilesAndDocuments: () => dispatch(fetchAllProfilesAndDocuments()),
+  shareDocument: (data) => dispatch(shareDocument(data)),
+  updateDocAccess: (data) => dispatch(updateDocAccess(data)),
+  deleteDocuments: (documentIds) => dispatch(deleteDocuments(documentIds)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Documents);

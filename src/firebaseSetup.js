@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/messaging";
-// import { updateUser } from "apiRequests/user";
+import { updateUser } from "apiRequests/user";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDG_6b7GzDixXpfpEXwqlyY6qeg0vavTJ4",
@@ -25,7 +25,7 @@ export const getToken = (setTokenFound) => {
     })
     .then((currentToken) => {
       if (currentToken) {
-        // updateUser(currentToken);
+        updateUser(currentToken);
         // console.log("current token for client: ", currentToken);
         setTokenFound(true);
         // Track the token -> client mapping, by sending to backend server

@@ -42,7 +42,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
   const handleHealthSelection = (selectedItem) => {
     // eslint-disable-next-line no-constant-condition
     if (selectedItem === "All") {
-      console.log("item not found Error");
       setRelatedArticles(articles);
       return;
     }
@@ -53,7 +52,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
     if (filteredArticles.length === 0) {
       setRelatedArticles(filteredArticles);
     } else {
-      console.log(filteredArticles);
       setRelatedArticles(filteredArticles);
     }
     setSelectedHealthTopic(selectedItem);
@@ -72,10 +70,6 @@ const Articles = ({ location, healthTopics, articles, searchedString }) => {
       state: article,
     });
   };
-  // const optionList = healthTopics.map((topic) => {
-  //   return topic.title;
-  // });
-  // console.log(optionList);
 
   useEffect(() => {
     fileterArticlesBySearch();

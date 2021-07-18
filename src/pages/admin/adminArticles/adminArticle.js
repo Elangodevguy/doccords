@@ -179,7 +179,6 @@ const AdminArticle = ({
           },
         });
       } else {
-        console.log(error);
         createNewArticle(
           title,
           description,
@@ -212,7 +211,6 @@ const AdminArticle = ({
           },
         });
       } else {
-        console.log(error);
         updateArticle(
           articleId,
           title,
@@ -399,7 +397,6 @@ const AdminArticle = ({
             )}
           </div>
           <div style={{ marginTop: "2rem" }}>
-            {console.log("inside render", descRef.current)}
             <CKEditor
               config={{
                 placeholder: "Please enter your description here",

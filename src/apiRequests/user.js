@@ -234,7 +234,6 @@ export const deleteDocuments = (documentIds) => async (dispatch, getState) => {
 };
 
 export const fetchSharedDocs = async (id, email, dispatch) => {
-  console.log(id, email);
   const sharedDocs = await customAxios.post(`/share`, {
     shareId: id,
     shareEmail: email,

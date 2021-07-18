@@ -49,7 +49,6 @@ const Article = ({ location }) => {
   const bgImage = article.picture;
   const history = useHistory();
 
-  console.log(healthTopicList);
   useEffect(() => {
     if (articlesList !== undefined) {
       setRelatedArticles(

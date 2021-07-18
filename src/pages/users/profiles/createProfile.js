@@ -79,7 +79,6 @@ const CreateProfile = ({
         gender,
         picture,
       } = location.state;
-      console.log("<<Inside", relationshipId.toString());
       setProfileId(profileId);
       setProfileName(profileName);
       setRelationshipId(relationshipId.toString());
@@ -197,7 +196,6 @@ const CreateProfile = ({
       setGender(e.target.value);
     }
   };
-  console.log("<<<Relation>>", relationshipId);
   return (
     <>
       <Button

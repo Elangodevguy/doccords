@@ -21,7 +21,6 @@ const UploadAvatar = () => {
 
   const onFileSelected = (e) => {
     if (e.target.files[0]) {
-      console.log(URL.createObjectURL(event.target.files[0]));
       setSelectedFile(e.target.files[0]);
       // setFileName(e.target.files[0].name);
       setPreview(URL.createObjectURL(event.target.files[0]));

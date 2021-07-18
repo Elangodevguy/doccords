@@ -116,7 +116,6 @@ const AdminHealthTopic = ({ createNewHealthTopic, updateHealthTopic }) => {
         await setIsLoading(false);
         await setIsSuccess(true);
         dispatch(setUploadedImageURL(res.data.fileLocation));
-        console.log(res);
       }
     } catch (error) {
       setIsLoading(false);

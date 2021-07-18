@@ -118,9 +118,6 @@ const AdminArticle = ({
       if (selectedFile !== "") {
         // Creating a FormData object
         const fileData = new FormData();
-
-        // Adding the 'image' field and the selected file as value to our FormData object
-        // Changing file name to make it unique and avoid potential later overrides
         fileData.set(
           "image",
           selectedFile,

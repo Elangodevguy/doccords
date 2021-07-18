@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import VerticalGridList from "../../components/verticalGridList";
-// import HorizontalGridList from "../../components/HorizontalGridList";
-// import DropDown from "components/DropDown/DropDown";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import MyAutoComplete from "../../components/autoComplete/AutoComplete";
@@ -18,14 +16,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
 }));
-
-// const optionList = [
-//   { title: "Cancer" },
-//   { title: "Sugar" },
-//   { title: "Blood Pressure" },
-//   { title: "Covid-19" },
-//   { title: "ENT" },
-// ];
 
 const Articles = ({ location, healthTopics, articles, searchedString }) => {
   const classes = useStyles();

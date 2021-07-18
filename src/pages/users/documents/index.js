@@ -465,7 +465,6 @@ const Documents = ({
               </InputLabel>
               <Select
                 labelId="simple-select-outlined-label"
-                // id="topic"
                 inputProps={{
                   name: "profile",
                   id: "profile",
@@ -497,7 +496,6 @@ const Documents = ({
               </InputLabel>
               <Select
                 labelId="simple-select-outlined-label"
-                // id="topic"
                 inputProps={{
                   name: "topic",
                   id: "topic",

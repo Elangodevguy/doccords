@@ -100,11 +100,6 @@ const CreateProfile = ({
     }));
     return healthTopicsArr;
   };
-  // useEffect(() => {
-  //   fetchAllHealthTopics();
-  //   setGender(genderItems[0].id);
-  //   setRelationshipId(getRelationshipCollection()[0].id);
-  // }, []);
   useEffect(() => {
     if (healthTopics.length > 0) {
       setHealthTopicsList(generateHealthTopics(healthTopics));
